@@ -10,6 +10,9 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
         // get all element from main activity
         // get TextView
         TextView txtWord = findViewById(R.id.txtWord);
@@ -22,8 +25,5 @@ public class MainActivity extends AppCompatActivity {
         Button btnEdit = findViewById(R.id.btnEdit);
         Button btnShow = findViewById(R.id.btnShow);
         Button btnDelete = findViewById(R.id.btnDelete);
-        
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
     }
 }
