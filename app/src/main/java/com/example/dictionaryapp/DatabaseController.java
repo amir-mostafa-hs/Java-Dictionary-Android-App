@@ -27,7 +27,15 @@ public class DatabaseController extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
-
+        String createTableQuery =
+                "create table " + dbTableName +"("+
+                dbTableColumnWordId +" integer primary key,"+
+                dbTableColumnWord + " text,"+
+                dbTableColumnPersianTranslate + " text,"+
+                dbTableColumnArabicTranslate + " text,"+
+                dbTableColumnPronounce + " text,"+
+                dbTableColumnDescriptions + " text)";
+        sqLiteDatabase.execSQL(createTableQuery);
     }
 
     @Override
