@@ -29,7 +29,7 @@ public class DatabaseController extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
         String createTableQuery =
                 "create table " + dbTableName +"("+
-                dbTableColumnWordId +" integer primary key,"+
+                dbTableColumnWordId +" integer primary key autoincrement,"+
                 dbTableColumnWord + " text,"+
                 dbTableColumnPersianTranslate + " text,"+
                 dbTableColumnArabicTranslate + " text,"+
