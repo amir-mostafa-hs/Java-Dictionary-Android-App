@@ -45,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
                 String newWordDescriptions = txtDescriptions.getText().toString();
 
                 // Checking the textViews value is valid or no
-                if (newWordValue == "" || newWordPersianTranslate == "" || newWordArabicTranslate == "" || newWordPronounce == "" || newWordDescriptions == "") {
+                if (newWordValue.equals("") || newWordPersianTranslate.equals("") || newWordArabicTranslate.equals("") || newWordPronounce.equals("") || newWordDescriptions.equals("")) {
                     Toast.makeText(MainActivity.this,"Please enter all requested values. If there is no value, instead of leaving it blank, enter \"None\".",Toast.LENGTH_SHORT).show();
                 }else {
                     // create new instance from DictionaryWord
