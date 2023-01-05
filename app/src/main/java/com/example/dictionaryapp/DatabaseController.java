@@ -44,15 +44,22 @@ public class DatabaseController extends SQLiteOpenHelper {
     }
 
     public boolean insertNewWord(DictionaryWord word) {
+        // get sqlite method
         SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
+        // create new instants from ContentValues for insert data
         ContentValues contentValues = new ContentValues();
 
+        // put data in contentValues for insert data
         contentValues.put(dbTableColumnWord,word.Word);
         contentValues.put(dbTableColumnPersianTranslate,word.PersianTranslate);
         contentValues.put(dbTableColumnArabicTranslate,word.ArabicTranslate);
         contentValues.put(dbTableColumnPronounce,word.Pronounce);
         contentValues.put(dbTableColumnDescriptions,word.Descriptions);
 
+        /*
+            insert data and handle error with try catch.
+            if insert data not successful this function return false, else return true
+        */
         try {
             sqLiteDatabase.insert(dbTableName,null,contentValues);
             return  true;
