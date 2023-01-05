@@ -4,6 +4,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.widget.Toast;
 
 /*
     This class create for create and connect
@@ -78,12 +79,12 @@ public class DatabaseController extends SQLiteOpenHelper {
         DictionaryWord newWord;
 
         // create query for get word data
-        String getDataQuery = "select * from " + dbTableName + " where " + dbTableColumnWord + " = " + word;
+        String getDataQuery = "select * from " + dbTableName + " where " + dbTableColumnWord + " like '%" + word + "%'";
         // get data and store it in a new instance of the cursor
         Cursor wordCursor = sqLiteDatabase.rawQuery(getDataQuery,null);
-
         // check data
-        if (wordCursor.moveToFirst()) {
+        if (wordCursor.getCount() > 0) {
+            wordCursor.moveToFirst();
             newWord = new DictionaryWord(wordCursor.getString(1),wordCursor.getString(2),wordCursor.getString(3),wordCursor.getString(4),wordCursor.getString(5));
             return newWord;
         } else {
