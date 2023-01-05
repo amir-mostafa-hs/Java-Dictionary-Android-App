@@ -46,7 +46,7 @@ public class DatabaseController extends SQLiteOpenHelper {
     public boolean insertNewWord(DictionaryWord word) {
         // get sqlite method
         SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
-        // create new instants from ContentValues for insert data
+        // create new instance from ContentValues for insert data
         ContentValues contentValues = new ContentValues();
 
         // put data in contentValues for insert data
