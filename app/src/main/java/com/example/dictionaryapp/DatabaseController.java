@@ -47,7 +47,6 @@ public class DatabaseController extends SQLiteOpenHelper {
         SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
 
-        contentValues.put(dbTableColumnWordId,word.WordId);
         contentValues.put(dbTableColumnWord,word.Word);
         contentValues.put(dbTableColumnPersianTranslate,word.PersianTranslate);
         contentValues.put(dbTableColumnArabicTranslate,word.ArabicTranslate);
