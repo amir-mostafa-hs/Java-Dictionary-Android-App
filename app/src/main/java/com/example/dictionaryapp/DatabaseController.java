@@ -1,4 +1,5 @@
 package com.example.dictionaryapp;
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
@@ -27,6 +28,10 @@ public class DatabaseController extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
+        /*
+            in this method, create createTableQuery variable and
+            whit this variable create new database.
+        */
         String createTableQuery =
                 "create table " + dbTableName +"("+
                 dbTableColumnWordId +" integer primary key autoincrement,"+
@@ -36,6 +41,12 @@ public class DatabaseController extends SQLiteOpenHelper {
                 dbTableColumnPronounce + " text,"+
                 dbTableColumnDescriptions + " text)";
         sqLiteDatabase.execSQL(createTableQuery);
+    }
+
+    public boolean insertNewWord(DictionaryWord word) {
+        SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        return false;
     }
 
     @Override
