@@ -66,5 +66,26 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+
+        // create click event in btsShow for show the data of the searched word
+        btnShow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // get searched word
+                String wordSearch = txtWord.getText().toString();
+                // search word and save result
+                DictionaryWord result = databaseController.getWord(wordSearch);
+                // check the result
+                if (result.equals(null)) {
+                    Toast.makeText(MainActivity.this, "The desired word is not found", Toast.LENGTH_SHORT).show();
+                } else {
+                    txtWord.setText(result.Word);
+                    txtPersianTranslate.setText(result.PersianTranslate);
+                    txtArabicTranslate.setText(result.ArabicTranslate);
+                    txtPronounce.setText(result.Pronounce);
+                    txtDescriptions.setText(result.Descriptions);
+                }
+            }
+        });
     }
 }
