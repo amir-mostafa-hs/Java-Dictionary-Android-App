@@ -55,6 +55,11 @@ public class MainActivity extends AppCompatActivity {
                     boolean result = databaseController.insertNewWord(newWord);
                     if (result) {
                         Toast.makeText(MainActivity.this, "Add new word successfully", Toast.LENGTH_SHORT).show();
+                        txtWord.setText("");
+                        txtPersianTranslate.setText("");
+                        txtArabicTranslate.setText("");
+                        txtPronounce.setText("");
+                        txtDescriptions.setText("");
                     } else {
                         Toast.makeText(MainActivity.this, "There is a problem adding a new word", Toast.LENGTH_SHORT).show();
                     }
