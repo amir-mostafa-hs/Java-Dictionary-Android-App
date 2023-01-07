@@ -106,6 +106,32 @@ public class DatabaseController extends SQLiteOpenHelper {
         }
     }
 
+    // updateWord method is edit word property
+    public boolean updateWord(DictionaryWord word) {
+        // get sqlite method
+        SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
+        // create new instance from ContentValues for edit data
+        ContentValues contentValues = new ContentValues();
+
+        // put data in contentValues for edit data
+        contentValues.put(dbTableColumnWord,word.Word);
+        contentValues.put(dbTableColumnPersianTranslate,word.PersianTranslate);
+        contentValues.put(dbTableColumnArabicTranslate,word.ArabicTranslate);
+        contentValues.put(dbTableColumnPronounce,word.Pronounce);
+        contentValues.put(dbTableColumnDescriptions,word.Descriptions);
+
+        /*
+            edit data and handle error with try catch.
+            if edit data not successful this function return false, else return true
+        */
+        try {
+            sqLiteDatabase.update(dbTableName,contentValues,dbTableColumnWord+ " like '%" + word.Word + "%'",null);
+            return  true;
+        }catch (Exception error){
+            return  false;
+        }
+    }
+
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
 
