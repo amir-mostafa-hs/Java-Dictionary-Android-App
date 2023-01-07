@@ -29,9 +29,22 @@ public class MainActivity extends AppCompatActivity {
         Button btnEdit = findViewById(R.id.btnEdit);
         Button btnShow = findViewById(R.id.btnShow);
         Button btnDelete = findViewById(R.id.btnDelete);
+        Button btnClear = findViewById(R.id.btnClear);
 
         // create new instance from DatabaseController
         databaseController = new DatabaseController(this);
+
+        // create click event in btnClear for clear all textView
+        btnClear.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                txtWord.setText("");
+                txtPersianTranslate.setText("");
+                txtArabicTranslate.setText("");
+                txtPronounce.setText("");
+                txtDescriptions.setText("");
+            }
+        });
 
         // create click event in btnAdd for add new word data
         btnAdd.setOnClickListener(new View.OnClickListener() {
