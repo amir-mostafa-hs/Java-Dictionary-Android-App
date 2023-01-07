@@ -117,5 +117,40 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+
+        // create click event in btnEdit for edit selected word
+        btnEdit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // get textViews value
+                String newWordValue = txtWord.getText().toString();
+                String newWordPersianTranslate = txtPersianTranslate.getText().toString();
+                String newWordArabicTranslate = txtArabicTranslate.getText().toString();
+                String newWordPronounce = txtPronounce.getText().toString();
+                String newWordDescriptions = txtDescriptions.getText().toString();
+
+                // Checking the textViews value is valid or no
+                if (newWordValue.equals("") || newWordPersianTranslate.equals("") || newWordArabicTranslate.equals("") || newWordPronounce.equals("") || newWordDescriptions.equals("")) {
+                    Toast.makeText(MainActivity.this,"Please enter all requested values. If there is no value, instead of leaving it blank, enter \"None\".",Toast.LENGTH_SHORT).show();
+                }else {
+                    // create new instance from DictionaryWord
+                    DictionaryWord newWordData = new DictionaryWord(newWordValue, newWordPersianTranslate, newWordArabicTranslate, newWordPronounce, newWordDescriptions);
+
+                    // edit word data and show alert
+                    boolean result = databaseController.updateWord(newWordData);
+                    if (result) {
+                        Toast.makeText(MainActivity.this, "edit word property successfully", Toast.LENGTH_SHORT).show();
+                        txtWord.setText("");
+                        txtPersianTranslate.setText("");
+                        txtArabicTranslate.setText("");
+                        txtPronounce.setText("");
+                        txtDescriptions.setText("");
+                    } else {
+                        Toast.makeText(MainActivity.this, "There is a problem editing word", Toast.LENGTH_SHORT).show();
+                    }
+                }
+
+            }
+        });
     }
 }
