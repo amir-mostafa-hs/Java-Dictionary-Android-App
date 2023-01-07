@@ -97,7 +97,7 @@ public class DatabaseController extends SQLiteOpenHelper {
         // get sqlite method
         SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
         // delete word from database
-        int result = sqLiteDatabase.delete(dbTableName,dbTableColumnWord+ " like '%?%' limit 1",new String[]{word});
+        int result = sqLiteDatabase.delete(dbTableName,dbTableColumnWord+ " like '%" + word + "%'",null);
         // check the result
         if (result != 0) {
             return true;
