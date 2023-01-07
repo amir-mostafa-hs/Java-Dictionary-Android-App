@@ -89,7 +89,7 @@ public class MainActivity extends AppCompatActivity {
                 // search word and save result
                 DictionaryWord result = databaseController.getWord(wordSearch);
                 // check the result
-                if (result.equals(null)) {
+                if (result == null) {
                     Toast.makeText(MainActivity.this, "The desired word is not found", Toast.LENGTH_SHORT).show();
                 } else {
                     txtWord.setText(result.Word);
@@ -97,6 +97,23 @@ public class MainActivity extends AppCompatActivity {
                     txtArabicTranslate.setText(result.ArabicTranslate);
                     txtPronounce.setText(result.Pronounce);
                     txtDescriptions.setText(result.Descriptions);
+                }
+            }
+        });
+
+        // create click event in btnDelete for delete selected word
+        btnDelete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // get selected word
+                String wordSelect = txtWord.getText().toString();
+                // delete word from database
+                boolean result = databaseController.deleteWord(wordSelect);
+                // check the result
+                if (result) {
+                    Toast.makeText(MainActivity.this, "Delete word successfully", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(MainActivity.this, "There is a problem Deleting the word", Toast.LENGTH_SHORT).show();
                 }
             }
         });
