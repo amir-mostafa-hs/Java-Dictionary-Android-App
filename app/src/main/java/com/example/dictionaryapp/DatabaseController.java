@@ -79,7 +79,7 @@ public class DatabaseController extends SQLiteOpenHelper {
         DictionaryWord newWord;
 
         // create query for get word data
-        String getDataQuery = "select * from " + dbTableName + " where " + dbTableColumnWord + " like '%" + word + "%'";
+        String getDataQuery = "select * from " + dbTableName + " where " + dbTableColumnWord + " like '%" + word + "%' limit 1";
         // get data and store it in a new instance of the cursor
         Cursor wordCursor = sqLiteDatabase.rawQuery(getDataQuery,null);
         // check data
@@ -89,6 +89,20 @@ public class DatabaseController extends SQLiteOpenHelper {
             return newWord;
         } else {
             return null;
+        }
+    }
+
+    // deleteWord method is delete selected word from database
+    public boolean deleteWord(String word) {
+        // get sqlite method
+        SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
+        // delete word from database
+        int result = sqLiteDatabase.delete(dbTableName,dbTableColumnWord+ " like '%?%' limit 1",new String[]{word});
+        // check the result
+        if (result != 0) {
+            return true;
+        }else {
+            return false;
         }
     }
 
